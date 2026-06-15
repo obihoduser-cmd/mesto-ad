@@ -16,26 +16,14 @@ const hideInputError = (formElement, inputElement, settings) => {
 
 
 const checkInputValidity = (formElement, inputElement, settings) => {
-  if (inputElement.hasAttribute('data-error-message')) {
-    const regex = /^[a-zA-Zа-яА-ЯёЁ\s\-]+$/;
-    const value = inputElement.value;
-    
-    if (value && !regex.test(value)) {
-      showInputError(
-        formElement, 
-        inputElement, 
-        inputElement.dataset.errorMessage, 
-        settings
-      );
-      return false;
-    }
-  }
-
   if (inputElement.validity.patternMismatch) {
-    const message = inputElement.dataset.errorMessage || inputElement.validationMessage;
-    showInputError(formElement, inputElement, message, settings);
-    return false;
-  }
+  showInputError(
+    formElement,
+    inputElement,
+    inputElement.dataset.errorMessage,
+    settings
+  );
+}
   
   if (!inputElement.validity.valid) {
     showInputError(
